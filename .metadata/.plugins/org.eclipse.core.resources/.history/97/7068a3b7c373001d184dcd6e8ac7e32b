@@ -1,0 +1,15 @@
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+server:
+  port: 8999
+spring:
+  cloud:
+    discovery:
+      enabled: true
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true

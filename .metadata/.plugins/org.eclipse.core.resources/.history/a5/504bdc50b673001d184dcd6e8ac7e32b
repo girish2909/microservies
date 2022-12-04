@@ -1,0 +1,17 @@
+package com.contact.service.impl;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.contact.service.ContactService;
+
+@Service
+public class ContactServiceImpl implements ContactService {
+
+	@Override
+	public List getContacts(Long userId) {
+		return null;
+	}
+
+}

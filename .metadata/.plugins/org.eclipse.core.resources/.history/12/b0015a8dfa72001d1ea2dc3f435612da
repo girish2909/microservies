@@ -1,0 +1,14 @@
+package com.user.service;
+
+import com.user.dto.User;
+
+@Service
+public class UserServiceImpl implements UserService {
+
+	@Override
+	public User getUser(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

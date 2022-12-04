@@ -1,0 +1,26 @@
+package com.contact.service.impl;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.contact.model.Contact;
+import com.contact.service.ContactService;
+
+@Service
+public class ContactServiceImpl implements ContactService {
+	
+	List contactList = List.of(
+			 new Contact(1L,"girish",1L),
+			 new Contact(2L,"ashish",1L),
+			 new Contact(3L,"vineet",1L),
+			 new Contact(4L,"manish",1L)
+			);
+
+	@Override
+	public List getContacts(Long userId) {
+		
+		return null;
+	}
+
+}

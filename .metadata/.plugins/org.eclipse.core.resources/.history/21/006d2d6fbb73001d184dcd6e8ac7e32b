@@ -1,0 +1,5 @@
+server:  port: 8999
+
+eureka:
+  instance:    hostname: localhost    
+spring:  application:    name: api-gateway  cloud:    gateway:      routes:      - id: baeldung        uri: baeldung.com      - id: myOtherRouting        uri: localhost:9999

@@ -1,0 +1,27 @@
+package com.user.service.impl;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.user.dto.UserDto;
+import com.user.service.UserService;
+
+@Service
+public class UserServiceImpl implements UserService{
+	
+	List<UserDto> userList = List.of(
+				new UserDto(1L,"girish", null),
+				new UserDto(2L,"ashish", null),
+				new UserDto(3L,"manish", null),
+				new UserDto(4L,"vishesh", null)				
+			);
+			
+
+	@Override
+	public UserDto getUserInfo(Long userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

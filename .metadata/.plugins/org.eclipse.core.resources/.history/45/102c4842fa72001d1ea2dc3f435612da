@@ -1,0 +1,8 @@
+package com.user.dto;
+
+public class Contact {
+
+	private Long id;
+	private String email;
+	private Long userId;
+}

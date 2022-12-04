@@ -1,0 +1,17 @@
+package com.user.dto;
+
+public class Contact {
+
+	private Long id;
+	private String email;
+	private Long userId;
+	
+	public Contact(Long id, String email, Long userId) {
+		super();
+		this.id = id;
+		this.email = email;
+		this.userId = userId;
+	}
+	
+	
+}

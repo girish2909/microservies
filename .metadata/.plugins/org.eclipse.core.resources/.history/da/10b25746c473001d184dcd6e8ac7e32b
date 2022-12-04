@@ -1,0 +1,24 @@
+eureka:
+ instance:
+  hostname: localhost
+  prefer-ip-address: true
+server:
+ port: 8999
+spring:
+ cloud:
+  discovery:
+   enabled: true
+  gateway:
+   discovery:
+    locator:
+     enabled: true
+     lower-case-service-id: true
+   routes:
+   - id: userService
+    uri: http://user-service/
+    predicates:
+    - Path=/user/**
+   - id: contactService
+    uri: http://contact-service/
+    predicates:
+    - Path=/contact/**

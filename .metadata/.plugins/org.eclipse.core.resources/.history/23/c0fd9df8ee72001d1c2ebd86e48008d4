@@ -1,0 +1,33 @@
+package com.user.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import com.user.dto.Contact;
+import com.user.dto.UserDto;
+import com.user.service.UserService;
+
+@Service
+public class UserServiceImpl implements UserService{
+	
+	@Autowired
+	private RestTemplate restTemplate;
+	
+	List<UserDto> userList = List.of(
+				new UserDto(1L,"girish", null),
+				new UserDto(2L,"ashish", null),
+				new UserDto(3L,"manish", null),
+				new UserDto(4L,"vishesh", null)				
+			);
+			
+
+	@Override
+	public UserDto getUserInfo(Long userId) {
+		UserDto user = userList.stream().filter(user_dto -> user_dto.getUserId().equals(userId)).findFirst().get();
+		user.setContacts(restTemplate.getForObject("http::/contact-service/contact/"+userId, List.class));
+	}
+
+}
