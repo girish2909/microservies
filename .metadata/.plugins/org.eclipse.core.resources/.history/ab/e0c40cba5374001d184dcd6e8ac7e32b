@@ -1,0 +1,37 @@
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    hostname: localhost
+
+server:  port: 8999
+
+spring:
+  application:
+    name: api-gateway
+  cloud:    gateway:      routes:
+        - id: user-service
+          uri: lb://user-service/
+          predicates:          - Path=/user/**
+          filters:            - name: CircuitBreaker
+              args:
+                name: user-service
+                fallback: forward:/userServiceFallback
+        - id: contact-service
+          uri: lb://contact-service/
+          predicates:          - Path=/contact/**
+            - name: CircuitBreaker
+              args:
+                name: contact-service
+                fallback: forward:/contactServiceFallback
+          
+management:  endpoints:    web:      exposure:        include: hystrix.stream        
+hystrix:
+  command:
+    fallbackcmd:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+    

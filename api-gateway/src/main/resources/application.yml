@@ -1,6 +1,10 @@
 eureka:
+  client:
+    enabled: true
+    fetch-registry: true
+    register-with-eureka: true
   instance:
-   hostname: localhost
+    hostname: localhost
 
 server:  port: 8999
 
@@ -11,6 +15,18 @@ spring:
         - id: user-service
           uri: lb://user-service/
           predicates:          - Path=/user/**
+          filters:          - name: CircuitBreaker
+            args:
+              name: userServiceFallback
+              fallbackUri: forward:/userServiceFallback
         - id: contact-service
           uri: lb://contact-service/
           predicates:          - Path=/contact/**
+          filters:
+          - name: CircuitBreaker
+            args:
+              name: contactServiceFallback
+              fallbackUri: forward:/contactServiceFallback
+          
+management:  endpoints:    web:      exposure:        include: hystrix.stream, info , health, configprops
+    

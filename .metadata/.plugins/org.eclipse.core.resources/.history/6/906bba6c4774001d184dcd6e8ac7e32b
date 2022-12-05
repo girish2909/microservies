@@ -1,0 +1,5 @@
+package com.lb.controller;
+
+public class FallbackController {
+
+}

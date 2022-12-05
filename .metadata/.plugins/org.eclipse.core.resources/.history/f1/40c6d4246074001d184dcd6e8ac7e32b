@@ -1,0 +1,23 @@
+package com.lb.controller;
+
+import org.springframework.boot.web.servlet.error.ErrorController;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+
+@RestController
+public class FallbackController implements ErrorController{
+
+	@GetMapping("/userServiceFallback")
+	@CircuitBreaker(fallbackMethod = "userServiceFallback", name = "userServiceFallback")
+	public String userServiceFallback() {
+		return "User Service is down at this time !!";
+	}
+	
+	@GetMapping("/contactServiceFallback")
+	@CircuitBreaker(fallbackMethod = "userServiceFallback", name = "userServiceFallback")
+	public String contactServiceFallback() {
+		return "Contact Service is down at this time !!";
+	}
+}
